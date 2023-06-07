@@ -181,7 +181,7 @@ position = Vector2(-2, -77)
 scale = Vector2(4.21284, 4.21284)
 sprite_frames = SubResource("SpriteFrames_dffpn")
 animation = &"crouch"
-frame_progress = 0.874303
+frame_progress = 0.469688
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-6.375, -67.75)
