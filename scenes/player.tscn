@@ -1,12 +1,17 @@
-[gd_scene load_steps=35 format=3 uid="uid://dmu41yjfsxh67"]
+[gd_scene load_steps=41 format=3 uid="uid://dmu41yjfsxh67"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_g2olw"]
 [ext_resource type="Texture2D" uid="uid://bhyo8yl5wc205" path="res://media/Player/Idle/adventurer-idle-00.png" id="1_qwbn6"]
 [ext_resource type="Texture2D" uid="uid://c7nwxqaakqyfi" path="res://media/Player/Idle/adventurer-idle-01.png" id="3_627gj"]
+[ext_resource type="Texture2D" uid="uid://dotv3ac3bjuum" path="res://media/Player/Crouch2/pixil-frame- (1).png" id="3_phlgk"]
 [ext_resource type="Texture2D" uid="uid://bmj51erktwa76" path="res://media/Player/Idle/adventurer-idle-02.png" id="4_hal6m"]
+[ext_resource type="Texture2D" uid="uid://v0ujdletlkok" path="res://media/Player/Crouch2/pixil-frame- (2).png" id="4_xtmt5"]
+[ext_resource type="Texture2D" uid="uid://bkdum8j6wjxxn" path="res://media/Player/Crouch2/pixil-frame- (3).png" id="5_02upp"]
 [ext_resource type="Texture2D" uid="uid://crs2hl5dsh141" path="res://media/Player/Idle/adventurer-idle-03.png" id="5_s8ts6"]
 [ext_resource type="Texture2D" uid="uid://bsmsxd4df4fn8" path="res://media/Player/adventurer-v1.5-Sheet.png" id="6_2iwh0"]
+[ext_resource type="Texture2D" uid="uid://cecogov35i0me" path="res://media/Player/Crouch2/pixil-frame- (4).png" id="6_wqmre"]
 [ext_resource type="PackedScene" uid="uid://td0e16cbippd" path="res://scenes/dash.tscn" id="7_vk0sp"]
+[ext_resource type="Texture2D" uid="uid://888f7n8m802s" path="res://media/Layer_0011_0.png" id="12_8swb4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uw1xa"]
 atlas = ExtResource("6_2iwh0")
@@ -129,6 +134,32 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("3_phlgk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xtmt5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_02upp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_wqmre")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_02upp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_wqmre")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xtmt5")
+}],
+"loop": true,
+"name": &"crouching movement",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_h6543")
 }, {
 "duration": 1.0,
@@ -146,11 +177,6 @@ animations = [{
 "loop": true,
 "name": &"dashing",
 "speed": 8.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"default",
-"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -239,7 +265,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_seo8j"]
-size = Vector2(82.75, 128.5)
+size = Vector2(54, 111.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jngdr"]
+size = Vector2(56, 82.25)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_g2olw")
@@ -249,12 +278,34 @@ texture_filter = 1
 position = Vector2(-2, -77)
 scale = Vector2(4.21284, 4.21284)
 sprite_frames = SubResource("SpriteFrames_dffpn")
+animation = &"crouching movement"
+frame_progress = 0.269764
 
 [node name="Standing" type="CollisionShape2D" parent="."]
-position = Vector2(-6.375, -67.75)
+position = Vector2(-3, -59.25)
 shape = SubResource("RectangleShape2D_seo8j")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -143)
 
 [node name="Dash" parent="." instance=ExtResource("7_vk0sp")]
+
+[node name="Crouch" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -45)
+shape = SubResource("RectangleShape2D_jngdr")
+
+[node name="CrouchRayCast_1" type="RayCast2D" parent="."]
+position = Vector2(-30, -47)
+target_position = Vector2(0, -69)
+
+[node name="CrouchRayCast_2" type="RayCast2D" parent="."]
+position = Vector2(23, -46)
+target_position = Vector2(0, -70)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -1
+offset_left = -580.0
+offset_top = -469.0
+offset_right = 578.0
+offset_bottom = 183.0
+texture = ExtResource("12_8swb4")

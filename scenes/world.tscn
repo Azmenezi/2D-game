@@ -24,7 +24,7 @@ scale = Vector2(1152, 53.0001)
 mesh = SubResource("QuadMesh_3u1gd")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(1156, -142)
+position = Vector2(735, -145)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2(576, 621.5)
